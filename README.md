@@ -1,6 +1,6 @@
 # JDAction - Correct JDA RestAction usage enforcer
 
-This is a Gradle plugin which makes sure that the return value of all methods which return a RestAction are used. Since it is a common mistake to forget to `.queue()`/`.complete()`/`.submit()` RestActions, and it is often only discovered after noticing that something doesn't work, this plugin will help catch those cases quickly as it will cause a build failure in such case.
+This is a Gradle plugin which makes sure that the return values of all methods which return a RestAction are used. Since it is a common mistake to forget to `.queue()`/`.complete()`/`.submit()` RestActions, and it is often only discovered after noticing that something doesn't work, this plugin will help catch those cases quickly as it will cause a build failure in such case.
 
 ## Usage
 
