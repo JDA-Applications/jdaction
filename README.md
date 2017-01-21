@@ -2,6 +2,9 @@
 
 This is a Gradle plugin which makes sure that the return values of all methods which return a RestAction are used. Since it is a common mistake to forget to `.queue()`/`.complete()`/`.submit()` RestActions, and it is often only discovered after noticing that something doesn't work, this plugin will help catch those cases quickly as it will cause a build failure in such case.
 
+Link to its Gradle plugin repository page:
+* https://plugins.gradle.org/plugin/com.sedmelluq.jdaction
+
 ## Usage
 
 The plugin first needs to be included:
