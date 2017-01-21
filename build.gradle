@@ -1,9 +1,24 @@
+buildscript {
+  repositories {
+    maven {
+      url 'https://plugins.gradle.org/m2/'
+    }
+  }
+  dependencies {
+    classpath 'com.gradle.publish:plugin-publish-plugin:0.9.7'
+  }
+}
+
 plugins {
   id 'java-gradle-plugin'
   id 'maven-publish'
+  id 'com.jfrog.bintray' version '1.7.3'
 }
 
+apply plugin: 'com.gradle.plugin-publish'
+
 group 'com.sedmelluq'
+ext.moduleName = 'jdaction'
 version = '1.0.0'
 
 repositories {
@@ -21,5 +36,36 @@ gradlePlugin {
       id = 'com.sedmelluq.jdaction'
       implementationClass = 'com.sedmelluq.discord.jdaction.NoActionPlugin'
     }
+  }
+}
+
+bintray {
+  user = System.properties['bintray.user']
+  key = System.properties['bintray.apiKey']
+  publications = ['pluginMaven', 'jdactionPluginMarkerMaven']
+  pkg {
+    repo = rootProject.group
+    name = 'jdaction'
+  }
+}
+
+pluginBundle {
+  website = 'https://github.com/sedmelluq/jdaction'
+  vcsUrl = 'https://github.com/sedmelluq/jdaction'
+
+  plugins {
+    jdaction {
+      id = "${group}.${moduleName}"
+      displayName = 'JDAction'
+      description = 'JDA RestAction usage verifier'
+      tags = ['discord', 'jda']
+      version = project.version
+    }
+  }
+
+  mavenCoordinates {
+    groupId = group
+    artifactId = moduleName
+    version = project.version
   }
 }
