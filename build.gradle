@@ -19,7 +19,7 @@ apply plugin: 'com.gradle.plugin-publish'
 
 group 'com.sedmelluq'
 ext.moduleName = 'jdaction'
-version = '1.0.0'
+version = '1.0.1'
 
 repositories {
   jcenter()
@@ -27,7 +27,7 @@ repositories {
 
 dependencies {
   compile gradleApi()
-  compile 'org.ow2.asm:asm-debug-all:6.0_ALPHA'
+  compile 'org.ow2.asm:asm-debug-all:5.0.3'
 }
 
 gradlePlugin {
