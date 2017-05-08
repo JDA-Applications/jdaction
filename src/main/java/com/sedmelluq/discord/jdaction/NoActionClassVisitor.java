@@ -85,7 +85,7 @@ public class NoActionClassVisitor extends ClassVisitor {
 
     @Override
     public void visitMethodInsn(int opcode, String owner, String name, String desc, boolean itf) {
-      if (desc.endsWith(")Lnet/dv8tion/jda/core/requests/RestAction;")) {
+      if (NoActionTargetDetector.isRestActionDescriptor(desc)) {
         checkForImmediatePop = true;
       } else {
         checkForImmediatePop = false;
