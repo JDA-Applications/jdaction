@@ -4,11 +4,13 @@ import org.gradle.api.Project;
 import org.gradle.api.Task;
 import org.gradle.api.file.FileCollection;
 import org.gradle.api.internal.ConventionMapping;
+import org.gradle.api.internal.file.UnionFileCollection;
 import org.gradle.api.plugins.quality.CodeQualityExtension;
 import org.gradle.api.plugins.quality.internal.AbstractCodeQualityPlugin;
 import org.gradle.api.tasks.SourceSet;
 
 import java.util.concurrent.Callable;
+import java.util.stream.Collectors;
 
 public class NoActionPlugin extends AbstractCodeQualityPlugin<NoActionVerificationTask> {
   @Override
@@ -35,7 +37,9 @@ public class NoActionPlugin extends AbstractCodeQualityPlugin<NoActionVerificati
     taskMapping.map("classes", new Callable<FileCollection>() {
       @Override
       public FileCollection call() {
-        return project.fileTree(sourceSet.getOutput().getClassesDir()).builtBy(sourceSet.getOutput());
+        return new UnionFileCollection(sourceSet.getOutput().getClassesDirs().getFiles().stream()
+                .map(file -> project.fileTree(file).builtBy(sourceSet.getOutput()))
+                .collect(Collectors.toList()));
       }
     });
 
