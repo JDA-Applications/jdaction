@@ -43,6 +43,8 @@ public class NoActionPlugin extends AbstractCodeQualityPlugin<NoActionVerificati
       classesTask.finalizedBy(task.getPath());
     }
   }
+  
+  protected void configureConfiguration(Configuration configuration) {}
 
   public static class Extension extends CodeQualityExtension {
     @SuppressWarnings("unused")
