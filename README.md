@@ -11,7 +11,7 @@ The plugin first needs to be included:
 
 ```groovy
 plugins {
-  id 'com.sedmelluq.jdaction' version '1.0.2'
+  id 'com.sedmelluq.jdaction' version '1.0.3'
 }
 ```
 
