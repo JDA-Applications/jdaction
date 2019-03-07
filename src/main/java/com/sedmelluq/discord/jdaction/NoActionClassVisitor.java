@@ -14,7 +14,7 @@ public class NoActionClassVisitor extends ClassVisitor {
   private int issueCount;
 
   public NoActionClassVisitor(Logger logger, boolean ignoreFailures) {
-    super(Opcodes.ASM5);
+    super(Opcodes.ASM6);
     this.logger = logger;
     this.ignoreFailures = ignoreFailures;
   }
@@ -38,7 +38,7 @@ public class NoActionClassVisitor extends ClassVisitor {
     private int lineNumber;
 
     public UnusedReturnMethodVisitor() {
-      super(Opcodes.ASM5);
+      super(Opcodes.ASM6);
     }
 
     @Override
