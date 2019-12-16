@@ -5,29 +5,29 @@ buildscript {
     }
   }
   dependencies {
-    classpath 'com.gradle.publish:plugin-publish-plugin:0.9.7'
+    classpath 'com.gradle.publish:plugin-publish-plugin:0.10.1'
   }
 }
 
 plugins {
   id 'java-gradle-plugin'
   id 'maven-publish'
-  id 'com.jfrog.bintray' version '1.7.3'
+  id 'com.jfrog.bintray' version '1.8.4'
 }
 
 apply plugin: 'com.gradle.plugin-publish'
 
 group 'com.sedmelluq'
 ext.moduleName = 'jdaction'
-version = '1.0.2'
+version = '1.0.3'
 
 repositories {
   jcenter()
 }
 
 dependencies {
-  compile gradleApi()
-  compile 'org.ow2.asm:asm-debug-all:5.0.3'
+  implementation gradleApi()
+  implementation 'org.ow2.asm:asm-debug-all:6.0_BETA'
 }
 
 gradlePlugin {
