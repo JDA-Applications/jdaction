@@ -1,7 +1,7 @@
 package com.sedmelluq.discord.jdaction;
 
 import org.gradle.api.Project;
-import org.gradle.api.Task;
+import org.gradle.api.artifacts.Configuration;
 import org.gradle.api.file.FileCollection;
 import org.gradle.api.internal.ConventionMapping;
 import org.gradle.api.plugins.quality.CodeQualityExtension;
@@ -22,6 +22,11 @@ public class NoActionPlugin extends AbstractCodeQualityPlugin<NoActionVerificati
   }
 
   @Override
+  protected void configureConfiguration(Configuration configuration) {
+
+  }
+
+  @Override
   protected CodeQualityExtension createExtension() {
     extension = project.getExtensions().create("jdaction", Extension.class, project);
     return extension;
@@ -32,16 +37,8 @@ public class NoActionPlugin extends AbstractCodeQualityPlugin<NoActionVerificati
     task.setSource(sourceSet.getAllJava());
 
     ConventionMapping taskMapping = task.getConventionMapping();
-    taskMapping.map("classes", new Callable<FileCollection>() {
-      @Override
-      public FileCollection call() {
-        return project.fileTree(sourceSet.getOutput().getClassesDir()).builtBy(sourceSet.getOutput());
-      }
-    });
-
-    for (Task classesTask : project.getTasksByName(sourceSet.getClassesTaskName(), false)) {
-      classesTask.finalizedBy(task.getPath());
-    }
+    taskMapping.map("classes", (Callable<FileCollection>) () -> project.fileTree(sourceSet.getOutput().getClassesDirs()).builtBy(sourceSet.getOutput()));
+    project.getTasksByName(sourceSet.getClassesTaskName(), false).forEach(classesTask -> classesTask.finalizedBy(task.getPath()));
   }
 
   public static class Extension extends CodeQualityExtension {

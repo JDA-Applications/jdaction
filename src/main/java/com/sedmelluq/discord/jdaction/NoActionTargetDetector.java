@@ -8,7 +8,7 @@ public class NoActionTargetDetector {
   );
 
   public static boolean isRestActionDescriptor(String descriptor) {
-    if (descriptor.endsWith(")Lnet/dv8tion/jda/core/requests/RestAction;")) {
+    if (descriptor.endsWith(")Lnet/dv8tion/jda/api/requests/RestAction;")) {
       return true;
     }
 
