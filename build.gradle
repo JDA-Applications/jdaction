@@ -1,25 +1,16 @@
-buildscript {
-  repositories {
-    maven {
-      url 'https://plugins.gradle.org/m2/'
-    }
-  }
-  dependencies {
-    classpath 'com.gradle.publish:plugin-publish-plugin:0.9.7'
-  }
-}
-
 plugins {
   id 'java-gradle-plugin'
   id 'maven-publish'
   id 'com.jfrog.bintray' version '1.7.3'
+  id "com.gradle.plugin-publish" version "0.10.1"
 }
 
-apply plugin: 'com.gradle.plugin-publish'
+ext.moduleName = 'jdaction'
 
 group 'com.sedmelluq'
-ext.moduleName = 'jdaction'
-version = '1.0.2'
+version '1.0.3'
+
+sourceCompatibility = 1.8
 
 repositories {
   jcenter()
@@ -27,7 +18,7 @@ repositories {
 
 dependencies {
   compile gradleApi()
-  compile 'org.ow2.asm:asm-debug-all:5.0.3'
+  compile group: 'org.ow2.asm', name: 'asm-debug-all', version: '6.0_BETA'
 }
 
 gradlePlugin {
